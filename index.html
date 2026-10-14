@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vendas · Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Painel de Vendas</h1>
+    <p class="muted">Dados fictícios de demonstração · <span id="range"></span></p>
+  </div>
+  <div class="filters">
+    <label>Período
+      <select id="fPeriodo">
+        <option value="3">Últimos 3 meses</option>
+        <option value="6" selected>Últimos 6 meses</option>
+        <option value="12">Últimos 12 meses</option>
+      </select>
+    </label>
+    <label>Região
+      <select id="fRegiao"><option value="">Todas</option></select>
+    </label>
+    <label>Categoria
+      <select id="fCategoria"><option value="">Todas</option></select>
+    </label>
+    <button id="exportBtn" class="btn">Exportar CSV</button>
+    <button id="themeBtn" class="btn ghost" aria-label="Alternar tema">◐</button>
+  </div>
+</header>
+
+<main>
+  <section class="kpis" id="kpis" aria-label="Indicadores"></section>
+
+  <section class="grid">
+    <article class="card wide">
+      <div class="card-h"><h2>Receita por mês</h2><span class="muted" id="trendNote"></span></div>
+      <div class="chart"><canvas id="cMensal" aria-label="Gráfico de receita mensal" role="img"></canvas></div>
+    </article>
+    <article class="card">
+      <div class="card-h"><h2>Receita por categoria</h2></div>
+      <div class="chart"><canvas id="cCategoria" aria-label="Gráfico de receita por categoria" role="img"></canvas></div>
+    </article>
+    <article class="card">
+      <div class="card-h"><h2>Receita por região</h2></div>
+      <div class="chart"><canvas id="cRegiao" aria-label="Gráfico de receita por região" role="img"></canvas></div>
+    </article>
+    <article class="card wide">
+      <div class="card-h"><h2>Produtos mais vendidos</h2><span class="muted">Clique no cabeçalho para ordenar</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th data-sort="nome">Produto</th>
+            <th data-sort="categoria">Categoria</th>
+            <th data-sort="qtd" class="r">Unidades</th>
+            <th data-sort="receita" class="r">Receita</th>
+            <th class="r">Participação</th>
+          </tr></thead>
+          <tbody id="topBody"></tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="muted">Projeto de demonstração · Desenvolvido por Mário Luiz</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="dados.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
